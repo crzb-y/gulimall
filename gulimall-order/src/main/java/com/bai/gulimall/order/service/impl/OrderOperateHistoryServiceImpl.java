@@ -1,0 +1,29 @@
+package com.bai.gulimall.order.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.bai.common.utils.PageUtils;
+import com.bai.common.utils.Query;
+
+import com.bai.gulimall.order.dao.OrderOperateHistoryDao;
+import com.bai.gulimall.order.entity.OrderOperateHistoryEntity;
+import com.bai.gulimall.order.service.OrderOperateHistoryService;
+
+
+@Service("orderOperateHistoryService")
+public class OrderOperateHistoryServiceImpl extends ServiceImpl<OrderOperateHistoryDao, OrderOperateHistoryEntity> implements OrderOperateHistoryService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        IPage<OrderOperateHistoryEntity> page = this.page(
+                new Query<OrderOperateHistoryEntity>().getPage(params),
+                new QueryWrapper<OrderOperateHistoryEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+}
